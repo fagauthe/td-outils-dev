@@ -76,7 +76,7 @@
           target: go
                     Go ivy, go!
          ================================= -->
-    <target name="go" depends="install-ivy, generate-src, resolve" 
+    <target name="go" depends="install-ivy, resolve, report" 
             description="--> resolve dependencies, compile and run the project">
 		<echo message="using ivy to resolve commons-lang 2.1..."/>
         <!-- here comes the magic line: asks ivy to resolve a dependency on 
@@ -101,7 +101,7 @@ Let's go!
             source code to a file. In real life this file would already be
             present on your file system, and this target wouldn't be necessary.
          ================================= -->
-    <target name="generate-src">
+    <!--<target name="generate-src">
         <mkdir dir="${src.dir}/example" />
         <echo file="${src.dir}/example/Hello.java">
 package example;
@@ -117,7 +117,7 @@ public class Hello {
     }
 }
         </echo>
-    </target>
+    </target> -->
 	
     <!-- ================================= 
           target: clean              
@@ -159,5 +159,9 @@ public class Hello {
 		<ivy:resolve/>
 		<ivy:cachepath pathid="lib.path.id"/>
 	</target>
-
+	
+	<target name="report">
+    		<mkdir dir="report"/>
+		<ivy:report todir="report"/>
+	</target>
 </project>
